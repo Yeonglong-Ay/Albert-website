@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeonglong Ay — Computational Neuroscientist</title>
+<meta name="description" content="Yeonglong (Albert) Ay — computational neuroscientist working on human electrophysiology, experimental design, and neural-signal analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3f5f4;
+    --ink:#16202a;
+    --muted:#5a6471;
+    --accent:#0f766e;      /* signal teal */
+    --accent-deep:#0b544e;
+    --line:#dde2e0;
+    --card:#fbfcfb;
+    --maxw:1060px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.12;letter-spacing:-0.01em}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  /* nav */
+  header{position:sticky;top:0;z-index:50;background:rgba(243,245,244,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .brand{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--ink)}
+  .brand:hover{text-decoration:none;color:var(--ink)}
+  .navlinks{display:flex;gap:28px;list-style:none}
+  .navlinks a{color:var(--muted);font-size:15px;font-weight:500}
+  .navlinks a:hover{color:var(--ink);text-decoration:none}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:15px;cursor:pointer;color:var(--ink)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-inner{position:relative;z-index:2;padding:96px 0 104px;max-width:680px}
+  .eyebrow{font-size:15px;color:var(--accent-deep);font-weight:600;margin-bottom:18px}
+  .hero h1{font-size:clamp(40px,7vw,68px);margin-bottom:22px}
+  .hero .lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:60ch;margin-bottom:34px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 24px;border-radius:8px;font-weight:600;font-size:15px}
+  .btn-solid{background:var(--accent);color:#fff}
+  .btn-solid:hover{background:var(--accent-deep);color:#fff;text-decoration:none}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);text-decoration:none}
+  canvas#wave{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.5}
+
+  /* sections */
+  section{padding:84px 0}
+  .sec-head{font-size:clamp(26px,3.4vw,34px);margin-bottom:32px}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:72ch}
+  .about-grid p{color:#2c3540;font-size:17px}
+  .pull{font-family:'Fraunces',serif;font-size:21px;color:var(--ink);border-left:3px solid var(--accent);padding-left:18px;margin:6px 0}
+
+  /* skills */
+  .skills{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .skill-rows{display:grid;gap:22px;max-width:860px}
+  .skill-row{display:grid;grid-template-columns:230px 1fr;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+  .skill-row:last-child{border-bottom:none;padding-bottom:0}
+  .skill-row h3{font-size:19px;color:var(--ink)}
+  .skill-row p{color:var(--muted);font-size:16px}
+
+  /* work */
+  .work-list{display:grid;gap:0}
+  .work-item{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;padding:26px 0;border-top:1px solid var(--line)}
+  .work-item:last-child{border-bottom:1px solid var(--line)}
+  .work-item h3{font-size:21px;margin-bottom:6px}
+  .work-item p{color:var(--muted);font-size:16px;max-width:66ch}
+  .work-item .tags{font-size:13.5px;color:var(--accent-deep);margin-top:8px;font-weight:500}
+  .work-link{white-space:nowrap;font-weight:600;font-size:15px}
+
+  /* publications */
+  .pubs{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pub{padding:18px 0;border-bottom:1px solid var(--line);font-size:16px;color:#2c3540;max-width:80ch}
+  .pub:last-child{border-bottom:none}
+  .pub .me{font-weight:600;color:var(--ink)}
+  .pub .venue{font-style:italic;color:var(--accent-deep)}
+  .pub .note{color:var(--muted);font-size:15px}
+
+  /* contact */
+  .contact p.intro{font-size:17px;color:#2c3540;max-width:60ch;margin-bottom:28px}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px}
+  .contact-links a{display:inline-flex;align-items:center;padding:12px 20px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-weight:600;font-size:15px;color:var(--ink)}
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent-deep);text-decoration:none}
+
+  footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  @media (max-width:720px){
+    .menu-btn{display:block}
+    .navlinks{position:absolute;top:64px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 24px 16px;display:none}
+    .navlinks.open{display:flex}
+    .navlinks li{padding:10px 0;border-bottom:1px solid var(--line)}
+    .skill-row{grid-template-columns:1fr;gap:6px}
+    .work-item{grid-template-columns:1fr}
+    .work-link{margin-top:4px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="brand">Yeonglong Ay</a>
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+      <ul class="navlinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <canvas id="wave" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="eyebrow">Computational Neuroscientist</p>
+        <h1>Reading the signals the brain uses to decide.</h1>
+        <p class="lead">I study how activity in the human brain gives rise to decisions and behavior: designing experiments, recording neural signals, and building the pipelines that make sense of them.</p>
+        <div class="cta">
+          <a class="btn btn-solid" href="#work">View my work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="sec-head">About</h2>
+      <div class="about-grid">
+        <p>My path into neuroscience started in a brain-rehabilitation setting, working with people recovering from traumatic brain injury and neurodegenerative disease. That experience set the question I have followed ever since: how does the brain give rise to thought and behavior, and how can understanding it help people?</p>
+        <p class="pull">Each step in my career has zoomed out a level, from molecules, to systems, to the working human brain.</p>
+        <p>I began at the molecular level, engineering proteins to study Alzheimer's at Michigan State. At Stanford I moved up to whole systems, spending three years on neuroinflammation and neuroprotection research and contributing to work published in Science. That pull toward the bigger picture is what brought me to Dartmouth, where I now record directly from the human brain while people make real decisions.</p>
+        <p>Along the way I became as drawn to the computational side as the biology: designing the experiments, building the analysis pipelines, and finding the signals in the data. Today my focus is computational neuroscience, and on moving that work out of the lab toward tools that reach people.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <h2 class="sec-head">What I work with</h2>
+      <div class="skill-rows">
+        <div class="skill-row">
+          <h3>Neural data &amp; electrophysiology</h3>
+          <p>Human EEG and intracranial EEG (iEEG) recording, experimental and task design (PsychoPy), signal processing (MNE-Python), spike sorting (SpikeInterface).</p>
+        </div>
+        <div class="skill-row">
+          <h3>Machine learning &amp; statistics</h3>
+          <p>Supervised and unsupervised machine learning (scikit-learn), regression modeling, time-frequency analysis, cluster-based permutation testing, FDR correction.</p>
+        </div>
+        <div class="skill-row">
+          <h3>Programming &amp; infrastructure</h3>
+          <p>Python, R, MATLAB, SQL, Git, SLURM / HPC clusters, Singularity containers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <h2 class="sec-head">Selected work</h2>
+      <div class="work-list">
+        <div class="work-item">
+          <div>
+            <h3>iEEG analysis pipeline</h3>
+            <p>End-to-end Python/MNE pipeline for human intracranial EEG: preprocessing, time-frequency feature extraction, and rigorous statistics. Part of thesis work showing that neural oscillatory activity tracks decision-making behavior.</p>
+            <div class="tags">Python · MNE · time-frequency analysis · statistics</div>
+          </div>
+          <a class="work-link" href="https://github.com/Yeonglong-Ay/ieeg-analysis-pipeline">View on GitHub</a>
+        </div>
+        <div class="work-item">
+          <div>
+            <h3>Roulette decision-making task</h3>
+            <p>A human risky-decision-making experiment built in PsychoPy to probe loss-chasing behavior, with photodiode-based neural synchronization for simultaneous intracranial recording.</p>
+            <div class="tags">PsychoPy · experimental design · human subjects</div>
+          </div>
+          <a class="work-link" href="https://github.com/Yeonglong-Ay/roulette_task">View on GitHub</a>
+        </div>
+        <div class="work-item">
+          <div>
+            <h3>ML for gene-expression classification</h3>
+            <p>Supervised machine-learning models classifying brain inflammatory gene-expression patterns in dementia from human RNA-seq data, with feature selection to identify discriminative markers. First-author IEEE publication.</p>
+            <div class="tags">scikit-learn · classification · feature selection</div>
+          </div>
+          <span class="work-link" style="color:var(--muted)">IEEE PRML, 2023</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="pubs">
+    <div class="wrap">
+      <h2 class="sec-head">Publications</h2>
+      <div class="pub">
+        Minhas PS, Jones JR, Latif-Hernandez A, &hellip; <span class="me">Ay YA</span>, &hellip; Andreasson KI. (2024). Restoring hippocampal glucose metabolism rescues cognition across Alzheimer's disease pathologies. <span class="venue">Science</span>, 385(6711).
+      </div>
+      <div class="pub">
+        <span class="me">Ay Y</span>, Choo YH, Bhatti A, Lim CP. (2023). Classification of Inflammatory Gene Expression Patterns with Machine Learning Models. <span class="venue">IEEE Int'l Conf. on Pattern Recognition and Machine Learning (PRML)</span>. <span class="note">(first author)</span>
+      </div>
+      <div class="pub">
+        <span class="note">Co-author on additional peer-reviewed papers in Acta Neuropathologica Communications, Alzheimer's &amp; Dementia, and the Journal of Neuroinflammation.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 class="sec-head">Get in touch</h2>
+      <div class="contact-links">
+        <a href="mailto:yeonglong.a.ay.gr@dartmouth.edu">Email</a>
+        <a href="https://github.com/Yeonglong-Ay">GitHub</a>
+        <a href="https://www.linkedin.com/in/yeonglong-ay">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%">
+    <span>&copy; 2026 Yeonglong Ay</span>
+    <span>Hanover, NH</span>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const btn = document.querySelector('.menu-btn');
+  const links = document.querySelector('.navlinks');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+  }));
+
+  // hero waveform — the one deliberate motion moment; static if reduced motion
+  const canvas = document.getElementById('wave');
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, t = 0;
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    w = r.width; h = r.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function trace(phase, amp, yBase, alpha){
+    ctx.beginPath();
+    for(let x=0; x<=w; x+=4){
+      const k = x/w;
+      // layered sines + a little jitter to read as a neural trace, not a clean sine
+      const y = yBase
+        + Math.sin(x*0.012 + phase)*amp
+        + Math.sin(x*0.031 + phase*1.7)*amp*0.45
+        + Math.sin(x*0.071 + phase*0.6)*amp*0.18;
+      x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle = 'rgba(15,118,110,'+alpha+')';
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    trace(t,        22, h*0.52, 0.55);
+    trace(t*0.8+2,  16, h*0.62, 0.30);
+    trace(t*1.3-1,  12, h*0.44, 0.20);
+    if(!reduce){ t += 0.015; requestAnimationFrame(draw); }
+  }
+  function start(){ resize(); draw(); }
+  window.addEventListener('resize', () => { resize(); if(reduce) draw(); });
+  start();
+</script>
+</body>
+</html>
